@@ -270,7 +270,7 @@ class V1Controller extends Controller
         );
         return response()->json($return);
      }
-
+     /*test*/
      public function uploadImage(Request $request){
         if ($request->hasFile('file')){
             $file = $request->file("file");
