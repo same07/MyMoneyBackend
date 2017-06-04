@@ -85,8 +85,8 @@ class V1Controller extends Controller
         $dt = Transactions::find($id);
         $category = Category::find($dt->category_id);
         $dt->category_name = $category->name;
-        $dt->image_uploaded = isset($dt->image) ? $dt->image : undefined;
-        $dt->image_preview = isset($dt->image)  ? asset('image/'.$dt->image) : undefined;
+        $dt->image_uploaded = isset($dt->image) ? $dt->image : null;
+        $dt->image_preview = isset($dt->image)  ? asset('image/'.$dt->image) : null;
         $return = array(
             "status" => 200,
             "error" => false,
