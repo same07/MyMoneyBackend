@@ -85,8 +85,8 @@ class V1Controller extends Controller
         $dt = Transactions::find($id);
         $category = Category::find($dt->category_id);
         $dt->category_name = $category->name;
-        $dt->image_uploaded = isset($dt->image) ? $dt->image : null;
-        $dt->image_preview = isset($dt->image)  ? asset('image/'.$dt->image) : '';
+        $dt->image_uploaded = isset($dt->image) ? $dt->image : undefined;
+        $dt->image_preview = isset($dt->image)  ? asset('image/'.$dt->image) : undefined;
         $return = array(
             "status" => 200,
             "error" => false,
@@ -268,6 +268,27 @@ class V1Controller extends Controller
             "error" => false,
             "msg" => "Category berhasil ditambahkan",
         );
+        return response()->json($return);
+     }
+
+     public function uploadImage(Request $request){
+        if ($request->hasFile('file')){
+            $file = $request->file("file");
+            $id =  time();
+            $filename = $id.'.'.$file->getClientOriginalExtension();
+            $filePath = $request->file("file")->storeAs('',$filename,"public");
+
+            $return['data'] = $filename;
+            $return['msg'] = "success";
+            $return['error'] = false;
+            $return['status'] = 200;
+
+        }else{
+            $return['status'] = 500;
+            $return['msg'] = "file is required";
+            $return['error'] = true;    
+            $return['error_msg'] = 'file is required';
+        }
         return response()->json($return);
      }
 }

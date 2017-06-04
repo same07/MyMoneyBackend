@@ -21,6 +21,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'v1', 'namespace' => 'Modules\V
     Route::any('/category/delete/{id}','V1Controller@categoryDelete');
     Route::any('/category/save','V1Controller@categoryStore');
     
+    Route::any('/uploadImage','V1Controller@uploadImage');
 
 
 });
