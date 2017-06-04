@@ -12,7 +12,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'v1', 'namespace' => 'Modules\V
     Route::any('/transaction/delete/{id}','V1Controller@TransactionsDelete');
     Route::any('/transaction/revenue/save','V1Controller@revenueStore');
     Route::any('/transaction/expenses/save','V1Controller@expensesStore');
-    Route::any('/transaction/save','V1Controller@transactionSave');
+    Route::any('/transaction/save','V1Controller@transactionStore');
 
     Route::any('/category/revenue/load','V1Controller@categoryRevenueLoad');
     Route::any('/category/expenses/load','V1Controller@categoryExpensesLoad');
