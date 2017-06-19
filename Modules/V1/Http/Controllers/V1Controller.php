@@ -85,8 +85,8 @@ class V1Controller extends Controller
         $dt = Transactions::find($id);
         $category = Category::find($dt->category_id);
         $dt->category_name = $category->name;
-        $dt->image_uploaded = isset($dt->image) ? $dt->image : null;
-        $dt->image_preview = isset($dt->image)  ? asset('image/'.$dt->image) : null;
+        $dt->image_path = isset($dt->image) ? $dt->image : null;
+        $dt->image = isset($dt->image)  ? asset('image/'.$dt->image) : null;
         $return = array(
             "status" => 200,
             "error" => false,
@@ -122,7 +122,7 @@ class V1Controller extends Controller
         $dt->category_type = isset($post_data['category_type']) ? $post_data['category_type'] : null;
         $dt->category_id = isset($post_data['category_id']) ? $post_data['category_id'] : null;
         $dt->description = isset($post_data['description']) ? $post_data['description'] : null;
-        $dt->image = isset($post_data['image_uploaded'])  ? $post_data['image_uploaded'] : null;
+        $dt->image = isset($post_data['image_path'])  ? $post_data['image_path'] : null;
         $dt->wallet_id = isset($post_data['wallet_id']) ? $post_data['wallet_id'] : 1;
 
         $dt->save();
